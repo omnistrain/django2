@@ -1,0 +1,81 @@
+{%  extends 'base.html' %}
+{% block content %}
+    <aside class="col-2" style="background-color: bisque">
+        <div class="row">
+            <div class="col-12">
+                 {% if user.photo %}
+                        <img style="width:150px; height:150px;" src="{{user.photo.url}}">
+                 {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <span>Bonjour  {{ user.username }}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a  href="{% url 'profil-photo-upload' %}">Changer la photo</a>
+            </div>
+        </div>
+    {% if perms.reseau.add_image %}
+     <div class="row">
+            <div class="col-12">
+                <a - href="{% url 'image-upload' %}">Upload photo</a>
+            </div>
+        </div>
+    {% endif %}
+     <div class="row">
+            <div class="col-12">
+                <a href="{% url 'post-create' %}">Ajouter un post</a>
+            </div>
+        </div>
+    <div class="row">
+            <div class="col-12">
+                <a href="{% url 'image-upload-multiple' %}">Ajouter plusieurs images</a>
+            </div>
+        </div>
+    </aside>
+
+
+
+
+    <div class="col-10">
+        <div class="row">
+            <div class="col-12">
+                <h3>Images</h3>
+                <hr>
+
+            </div>
+
+        </div>
+        <div class="row">
+            {% for image in images %}
+                <div class="col-3">
+                    <img style="width:150px; height:150px;" src="{{ image.image.url }}">
+                    <p>{{ image.caption }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h3>Posts</h3>
+                <hr>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+                {% for post in posts %}
+                    <div class="col-3">
+                        <img style="width:150px; height:150px;" src="{{ post.photo.image.url }}">
+                        <h3>Post : {{ post.title }}</h3>
+                        <a href="{%  url 'post-view'  post.id %}">Consulter</a>
+
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+
+{% endblock content %}
