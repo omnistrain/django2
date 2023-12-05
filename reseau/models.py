@@ -2,8 +2,6 @@ from django.db import models
 from django.conf import settings
 
 from PIL import Image as Img
-
-
 # Create your models here.
 class Image(models.Model):
     image = models.ImageField()

@@ -14,6 +14,7 @@ def post_view(request, id):
 
 
 @login_required()
+@permission_required('reseau.add_image', raise_exception=True)
 def post_and_image_upload(request):
     post_form = forms.post_form()
     image_form = forms.image_form()
@@ -52,10 +53,6 @@ def photo_upload(request):
         return redirect('welcome')
 
     return render(request, 'reseau/photo_upload.html', context={'form': form})
-
-
-
->
 
 @login_required()
 def welcome_view(request):
