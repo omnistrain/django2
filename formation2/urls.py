@@ -29,9 +29,6 @@ urlpatterns = [
         template_name='authentication/login.html',
         redirect_authenticated_user=True
     ), name='login'),
-    path('logout/', LogoutView.as_view(
-        template_name='authentication/logout.html'
-    ), name='logout'),
     path('change-password/', PasswordChangeView.as_view(
         template_name='authentication/password_change_form.html'),
          name='password_change'
@@ -44,7 +41,7 @@ urlpatterns = [
 
     # path('', authentication.views.login_page.as_view(), name='login'),
 
-    #path('logout/', authentication.views.logout_view, name='logout'),
+    path('logout/', authentication.views.logout_view, name='logout'),
     path('welcome/', reseau.views.welcome_view, name='welcome'),
     path('image/upload', reseau.views.photo_upload, name='image-upload'),
     path('profil/photo/upload', authentication.views.photo_upload, name='profil-photo-upload'),
